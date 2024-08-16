@@ -1,0 +1,44 @@
+def how_much_money():
+    money = int(input("how much money do you want? $"))
+    print(f"you now have ${money}")
+    
+    
+
+    while True:
+        enter = input("what would you like to buy? type q to see what we have :")
+        if enter == "q":
+            print("we have cars, bikes and games")
+            break
+        else:
+            print("please type 'q' to see the items")
+            
+            
+    return money
+
+def buy_stuff(money):
+    want = input("what would you like to buy?")
+    if want == "car" or "cars":
+        cost = 10000
+        
+    elif want == "bike" or "bikes":
+        cost = 500
+        
+    elif want == "game" or "games":
+        cost = 50
+        
+    else:
+        print("we dont have that item")
+        return
+
+    if money >= cost:
+        money -= cost
+        print(f"you bought a {want} you have ${money} left")
+    else:
+        print("you dont have the money")
+        
+        
+    return money
+
+money = how_much_money()
+    
+money = buy_stuff(money)
