@@ -1,0 +1,135 @@
+import random
+
+
+def scramble_word(word):
+    word = list(word)
+    random.shuffle(word)
+    return "".join(word)
+
+
+
+def scramble_word_game():
+    modes = ("easy", "normal", "hard")
+    pick_mode = None
+
+    print("Welcome to Word Scramble!")
+    print("Unscramble the word to find the original word.")
+    print("")
+  
+    
+    while pick_mode not in modes:
+        pick_mode = input("what game mode would you like easy, normal or hard:")
+
+        if pick_mode == "easy":
+            words = ["cat", "dog", "sun", "run", "bat", "rat", "hat", "car", "pen", "box", "lip", "fun", "red", "big", "tap", "log", "mat", "net", "bus", "fan"]
+        elif pick_mode == "normal":
+            words = ["apple", "banana", "orange", "grapes", "cherry", "peach", "melon", "mango", "lemon", "berry", "plum", "olive", "figs", "papaya", "apricot", "guava", "kiwi", "nectar", "tomato", "coconut"]
+
+        elif pick_mode == "hard":
+            words = ["complicated", "hypothesis", "extravagant", "unbelievable", "abstraction", "unfortunate", "discrepancy", "archetypal", "perspective", "articulation", "inspiration", "predicament", "significant", "vocabulary", "continuation", "fundamental", "calculation", "perception", "transparency", "clarification"]
+    print("")
+
+        
+
+
+    word = random.choice(words)
+    scramble = scramble_word(word)
+
+    print(f"Scrambled word: {scramble}")
+    print("")
+
+
+    guess = input("What is your guess?:").strip().lower()
+    
+    if guess == word:
+        print("You won this game returning to main page.")
+        print("")
+        print("")
+        main()
+    else:
+        print(f"Sorry, that's not correct. The word was {word}.")
+        
+
+
+
+
+
+
+
+def number_guessing_game():
+    modes = ("easy", "normal", "hard")
+    pick_mode = None
+    
+
+
+    
+    while pick_mode not in modes:
+        
+        pick_mode = input("what game mode would you like easy, normal or hard:")
+    
+        if pick_mode == "easy":
+            numbers_to_guess = random.randint(1, 100)
+        elif pick_mode == "normal":
+            numbers_to_guess = random.randint(1, 1000)
+        elif pick_mode == "hard":
+            numbers_to_guess = random.randint(1, 10000)
+                
+        else:
+            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard")
+            return
+         
+
+    print(f"I have selected a number based on the {pick_mode} mode. Can you guess what it is?")
+
+    
+    guess = None
+    
+
+    
+
+    while guess != numbers_to_guess:
+        user_input = input("Enter your guess: ").strip().lower()
+
+        if not user_input.isdigit():
+            print("Enter a number")
+            continue
+
+        guess = int(user_input)
+
+        if guess > numbers_to_guess:
+            print("That number is to big")
+        elif guess < numbers_to_guess:
+            print("That number is to small")
+        
+        else:
+            print("You won this game returning to main page.")
+            print("")
+            print("")
+            main()
+            
+
+
+
+
+def main():
+    games = ["number guessing game", "scramble game"]
+    pick = None
+    
+    while pick not in games:
+        print(f"games:{games}")
+        pick = input("What game do you want to play? type the game:")
+        if pick == "number guessing game":
+            print("")
+            print("")
+            print("")
+            number_guessing_game()
+        elif pick == "scramble game":
+            print("")
+            print("")
+            print("")
+            scramble_word_game()
+        else:
+            print("Invalid game selected. Please select 'number game'.")
+
+main()
+
