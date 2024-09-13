@@ -1,10 +1,288 @@
 import random
+import time
+
+
+
+def gamble_game():
+    balance = 1000
+    print(f"Welcome to the gamble game, Ready to start type start if not type main to return.")
+    user_start = ""
+    while user_start.lower() != "end":
+        
+        user_start = input(f"your balance is {balance}, ready to start? \"say start\" :")
+        if user_start == "start":
+            user_bid = int(input("How much are you bidding? :"))
+            
+            if user_bid <= balance:
+                playing = True
+                fail_chance = 25
+                new_bid_balance = user_bid
+                balance = balance - user_bid
+                while playing:
+
+                    print(f"You have a {fail_chance}% chance to lose all your money but if you win you win 100% more money.")
+                    ask_bid_more = input("Would you like to continue? yes/no:")
+                    
+                    if ask_bid_more == "yes":
+                        if random.randint(1, 100) <= fail_chance:
+                            print("you failed you lost your bid.")
+                            playing = False
+                        else:
+                            new_bid_balance = round(new_bid_balance * 2)
+                            print("")
+                            print("")
+                            print(f"you won your balance is now ${new_bid_balance}")
+                            
+
+                    elif ask_bid_more == "no":
+                        print("")
+                        print(f"Ok, you cashed out at ${new_bid_balance}")
+                        balance = balance + new_bid_balance
+                        playing = False
+                        
+                    else:
+                        print("Plesae answer yes or no")
+
+            elif user_bid > balance:
+                print("You don't have that much money")
+        elif user_start == "main":
+            print("")
+            print("")
+            time.sleep(2)
+            main()
+            
+        else:
+            print("Invalid. Please select 'start'")        
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+def simple_quiz_game():
+    print("Welcome to the python quiz game.")
+    print("There will be 5 questions and 3 options and each question gets harder.")
+    print("")
+    print("")
+    correct_answer = None
+    pick_mode = None 
+    modes = ("easy", "normal", "hard")
+    
+
+    while pick_mode not in modes:
+
+        pick_mode = input("What game mode do you want easy, normal or hard? :")
+
+        
+        if pick_mode == "easy":
+            questions = [
+                "What will be the output of the following code? print([1, 2, 3])",
+                "Which of the following is used to define a list in Python?",
+                "What will be the result of the following code snippet? x = [1, 2, 3]; print(x[1])",
+                "How do you print text in Python?",
+                "Given the code below, what will be the output? print('Python')"
+            ]
+            q1 = random.choice(questions)
+            
+            print(q1)
+            
+            if q1 == "What will be the output of the following code? print([1, 2, 3])":
+                print("")
+                print("(A) [1, 2, 3]")
+                print("(B) (1, 2, 3)")
+                print("(C) 1 2 3")
+                print("(D) Error")
+                correct_answer = 'a'
+                
+            elif q1 == "Which of the following is used to define a list in Python?":
+                print("")
+                print("(A) [ ]")
+                print("(B) { }")
+                print("(C) ( )")
+                print("(D) :")
+                correct_answer = 'a'
+                
+            elif q1 == "What will be the result of the following code snippet? x = [1, 2, 3]; print(x[1])":
+                print("")
+                print("(A) 1")
+                print("(B) 2")
+                print("(C) 3")
+                print("(D) Error")
+                correct_answer = 'b'
+                
+            elif q1 == "How do you print text in Python?":
+                print("")
+                print("(A) print('text') (B) echo 'text' (C) printf('text') (D) print.text('text')")
+                print("(A) print('text')")
+                print("(B) echo 'text'")
+                print("(C) printf('text')")
+                print("(D) print.text('text')")
+                correct_answer = 'a'
+                
+            elif q1 == "Given the code below, what will be the output? print('Python')":
+                print("")
+                print("(A) Python")
+                print("(B) 'Python'")
+                print("(C) PYTHON")
+                print("(D) Error")
+                correct_answer = 'a'
+
+                
+
+
+    
+        if pick_mode == "normal":
+            questions = [
+                "What will be the output of the following code? print('Hello' * 3 + 'World')",
+                "Which of the following is the correct way to handle exceptions in Python?",
+                "What will be the output of the following code? x = [1, [2, 3], 4] x[1].append(5) print(x)",
+                "How do you create a lambda function in Python?",
+                "Which of the following statements is true about Python's *args and **kwargs?"
+            ]
+            q1 = random.choice(questions)
+            
+            print(q1)
+
+            if q1 == "What will be the output of the following code? print('Hello' * 3 + 'World')":
+                print("")
+                print("(A) Hello World Hello")
+                print("(B) HelloHelloWorld")
+                print("(C) HelloHelloHelloWorld")
+                print("(D) Error")
+                correct_answer = 'c'
+            
+            elif q1 == "Which of the following is the correct way to handle exceptions in Python?":
+                print("")
+                print("(A) try...except")
+                print("(B) catch...finally")
+                print("(C) exception...catch")
+                print("(D) handle...error")
+                correct_answer = 'a'
+            
+            elif q1 == "What will be the output of the following code? x = [1, [2, 3], 4]; x[1].append(5); print(x)":
+                print("")
+                print("(A) [1, [2, 3], 4, 5]")
+                print("(B) [1, [2, 3, 5], 4]")
+                print("(C) [1, [2, 3], [4, 5]]")
+                print("(D) Error")
+                correct_answer = 'b'
+            
+            elif q1 == "How do you create a lambda function in Python?":
+                print("")
+                print("(A) lambda x: x + 1")
+                print("(B) def lambda x: x + 1")
+                print("(C) lambda(x) = x + 1")
+                print("(D) function lambda(x): return x + 1")
+                correct_answer = 'a'
+            
+            elif q1 == "Which of the following statements is true about Python's *args and **kwargs?":
+                print("")
+                print("(A) Both *args and **kwargs are used for single arguments only")
+                print("(B) *args and **kwargs are interchangeable")
+                print("(C) **kwargs is used for variable length arguments and *args for keyword arguments")
+                print("(D) *args is used for variable length arguments and **kwargs for keyword arguments")
+                correct_answer = 'd'
+
+                
+
+
+
+
+        if pick_mode == "hard":
+
+            questions = [
+                 "What will be the output of the following code? print([x**2 for x in range(3) if x % 2 == 0])",
+                 "Which of the following best describes the difference between deepcopy and shallow copy in Python?",
+                 "What will be the result of the following code snippet? x = {1: 'a', 2: 'b', 3: 'c'}; print(sorted(x.keys(), key=lambda k: x[k]))",
+                 "How do you implement a metaclass in Python, and what is its primary use case?",
+                 "Given the code below, what will be the output? def func(x, y=[]): y.append(x); return y; print(func(1)); print(func(2, [])); print(func(3))"
+            ]
+            q1 = random.choice(questions)
+
+            print(q1)
+            
+            if q1 == "What will be the output of the following code? print([x**2 for x in range(3) if x % 2 == 0])":
+                 print("")
+                 print("(A) [0, 4]")
+                 print("(B) [0, 1, 4]")
+                 print("(C) [1, 4]")
+                 print("(D) [0, 1, 2, 3]")
+                 correct_answer = 'a'
+            
+            elif q1 == "Which of the following best describes the difference between deepcopy and shallow copy in Python?":
+                 print("")
+                 print("(A) Deepcopy creates a new object and recursively copies all objects found in the original, while shallow copy only copies the references.")
+                 print("(B) Shallow copy creates a new object and recursively copies all objects found in the original, while deepcopy only copies the references.")
+                 print("(C) Both deepcopy and shallow copy create deep copies of objects.")
+                 print("(D) Shallow copy and deepcopy are identical operations.")
+                 correct_answer = 'a'
+            
+            elif q1 == "What will be the result of the following code snippet? x = {1: 'a', 2: 'b', 3: 'c'}; print(sorted(x.keys(), key=lambda k: x[k]))":
+                 print("")
+                 print("(A) [1, 2, 3]")
+                 print("(B) [2, 1, 3]")
+                 print("(C) [1, 3, 2]")
+                 print("(D) [3, 2, 1]")
+                 correct_answer = 'b'
+            
+            elif q1 == "How do you implement a metaclass in Python, and what is its primary use case?":
+                 print("")
+                 print("(A) Use `@staticmethod` to create a metaclass; it is used for static methods.")
+                 print("(B) Use `super()` to create a metaclass; it is used for modifying instance behavior.")
+                 print("(C) Create a metaclass by subclassing `object`; it is used for instance customization.")
+                 print("(D) Implement a metaclass by subclassing `type`; it is used for controlling class creation.")
+                 correct_answer = 'd'
+            
+            elif q1 == "Given the code below, what will be the output? def func(x, y=[]): y.append(x); return y; print(func(1)); print(func(2, [])); print(func(3))":
+                 print("")
+                 print("(A) [1] [2] [3]")
+                 print("(B) [1] [2] [1, 3]")
+                 print("(C) [1] [2] [1, 2, 3]")
+                 print("(D) [1] [2] [3] and [1, 2, 3]")
+                 correct_answer = 'c'
+
+                 
+    answer = input("what is your answer?:").upper().lower()            
+    if answer == correct_answer:
+        print("You won this game returning to main page.")
+        print("")
+        print("")
+        time.sleep(2)
+        main()
+    else:
+        print(f"Sorry, that's not correct. The answer was {correct_answer}, returning to main page.")
+        print("")
+        print("")
+        time.sleep(2)
+        main()
+
+
+
+
+                    
+
+
+
+
+
+
+
 
 
 def scramble_word(word):
     word = list(word)
     random.shuffle(word)
     return "".join(word)
+    if random.shuffle(word) == word:
+        random.shuffle(word)
 
 
 
@@ -27,10 +305,14 @@ def scramble_word_game():
 
         elif pick_mode == "hard":
             words = ["complicated", "hypothesis", "extravagant", "unbelievable", "abstraction", "unfortunate", "discrepancy", "archetypal", "perspective", "articulation", "inspiration", "predicament", "significant", "vocabulary", "continuation", "fundamental", "calculation", "perception", "transparency", "clarification"]
+        else:
+            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard")
+            print("")
+            print("")
+         
     print("")
 
         
-
 
     word = random.choice(words)
     scramble = scramble_word(word)
@@ -45,10 +327,19 @@ def scramble_word_game():
         print("You won this game returning to main page.")
         print("")
         print("")
+        time.sleep(2)
         main()
     else:
-        print(f"Sorry, that's not correct. The word was {word}.")
+        print(f"Sorry, that's not correct. The word was {word}, returning to main page.")
+        print("")
+        print("")
+        time.sleep(2)
+        main()
         
+
+
+
+
 
 
 
@@ -59,35 +350,46 @@ def scramble_word_game():
 def number_guessing_game():
     modes = ("easy", "normal", "hard")
     pick_mode = None
+    numbers_tried = 0
     
 
-
-    
     while pick_mode not in modes:
         
         pick_mode = input("what game mode would you like easy, normal or hard:")
     
         if pick_mode == "easy":
-            numbers_to_guess = random.randint(1, 100)
-        elif pick_mode == "normal":
             numbers_to_guess = random.randint(1, 1000)
-        elif pick_mode == "hard":
+            bigest_number = "1,000"
+            number_of_trys = 15
+        elif pick_mode == "normal":
             numbers_to_guess = random.randint(1, 10000)
+            bigest_number = "10,000"
+            number_of_trys = 25
+        elif pick_mode == "hard":
+            numbers_to_guess = random.randint(1, 100000)
+            bigest_number = "100,000"
+            number_of_trys = 35
                 
         else:
             print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard")
-            return
-         
-
-    print(f"I have selected a number based on the {pick_mode} mode. Can you guess what it is?")
-
-    
+            print("")
+            print("")
+            
+    print(f"I have selected a number based on the {pick_mode} mode. Can you guess what it is? the max number will be {bigest_number}, And you will have {number_of_trys} trys")
     guess = None
-    
 
     
-
+        
+    
     while guess != numbers_to_guess:
+        if numbers_tried >= number_of_trys:
+            print("You reached the max number of trys, returning to main page.")
+            print("")
+            print("")
+            print("")
+            time.sleep(2)
+            main()
+        
         user_input = input("Enter your guess: ").strip().lower()
 
         if not user_input.isdigit():
@@ -95,6 +397,7 @@ def number_guessing_game():
             continue
 
         guess = int(user_input)
+        numbers_tried += 1
 
         if guess > numbers_to_guess:
             print("That number is to big")
@@ -105,31 +408,50 @@ def number_guessing_game():
             print("You won this game returning to main page.")
             print("")
             print("")
+            time.sleep(2)
             main()
             
 
 
 
 
+
+
+
+
+
+
+
 def main():
-    games = ["number guessing game", "scramble game"]
+    games = ["number guessing game", "scramble game", "quiz game", "gamble game"]
+    games_to_play = "number guessing game, scramble game, quiz game and gamble game "
     pick = None
     
     while pick not in games:
-        print(f"games:{games}")
+        print(f"These are the games we have: {games_to_play}")
         pick = input("What game do you want to play? type the game:")
         if pick == "number guessing game":
-            print("")
+            time.sleep(.5)
             print("")
             print("")
             number_guessing_game()
         elif pick == "scramble game":
-            print("")
+            time.sleep(.5)
             print("")
             print("")
             scramble_word_game()
+        elif pick == "quiz game":
+            time.sleep(.5)
+            print("")
+            print("")
+            simple_quiz_game()
+        elif pick == "gamble game":
+            time.sleep(.5)
+            print("")
+            print("")
+            gamble_game()
         else:
-            print("Invalid game selected. Please select 'number game'.")
+            print("Invalid game selected. Please select a valid game.")
+            print("")
 
-main()
-
+main()     
