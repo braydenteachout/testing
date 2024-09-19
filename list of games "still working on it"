@@ -1,6 +1,105 @@
 import random
 import time
 
+def hangman_game():
+    print("Welcome to the hangman game, Guess the letter before you run out of chances")
+    modes = ("easy", "normal", "hard")
+    mode = None
+    while mode not in modes:
+        mode = input("What mode would you like to play, easy, normal or hard.")
+        if mode == "easy":
+            lives = 7
+            random_words = [
+                "look",
+                "Cat",
+                "Dog",
+                "Sun",
+                "Tree",
+                "Ball",
+                "Book",
+                "Star",
+                "Fish",
+                "Cup"
+            ]
+        if mode == "normal":
+            lives = 15
+            random_words = [
+                "Apple",
+                "River",
+                "House",
+                "Ocean",
+                "Magic",
+                "Chair",
+                "Mouse",
+                "Tiger",
+                "Cloud",
+                "Bread"
+            ]
+        elif mode == "hard":
+            lives = 20
+            random_words = [
+                "Planet",
+                "Mystery",
+                "Journey",
+                "Victory",
+                "Thunder",
+                "Whisper",
+                "Shadow",
+                "Puzzle",
+                "Garden",
+                "Fortune"
+            ]
+            
+        else:
+            print("Please enter a valid mode")
+
+
+    rand = random.choice(random_words).lower()
+
+    word = ["_ " for _ in rand]
+    
+    while lives > 0 and "_ " in word:
+        print(f"Current word: {' '.join(word)}")
+        user_guess = input("What letter you guess? :").lower()
+        
+        if user_guess in rand:
+            for i, letter in enumerate(rand):
+                if letter == user_guess:
+                    word[i] = user_guess
+            print(f"Good guess! letter '{user_guess}' is in the word")
+        else:
+            lives -= 1
+            print(f"Thats not a letter you have {lives} left.")
+
+    if "_ " not in word:
+        print("\n")
+        print(f"Congratulations! You guessed the word: {''.join(word)}\n\n")
+        print("Returning to main page.")
+        time.sleep(2)
+        main()
+    else:
+        print("\n")
+        print(f"You lost! The word was '{rand}'.")
+        print("Returning to main page. \n\n")
+        time.sleep(2)
+        main()
+        
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def gamble_game():
@@ -29,8 +128,7 @@ def gamble_game():
                             playing = False
                         else:
                             new_bid_balance = round(new_bid_balance * 2)
-                            print("")
-                            print("")
+                            print("\n")
                             print(f"you won your balance is now ${new_bid_balance}")
                             
 
@@ -46,8 +144,7 @@ def gamble_game():
             elif user_bid > balance:
                 print("You don't have that much money")
         elif user_start == "main":
-            print("")
-            print("")
+            print("Returning to main page. \n\n")
             time.sleep(2)
             main()
             
@@ -69,9 +166,7 @@ def gamble_game():
 
 def simple_quiz_game():
     print("Welcome to the python quiz game.")
-    print("There will be 5 questions and 3 options and each question gets harder.")
-    print("")
-    print("")
+    print("There will be 5 questions and 3 options and each question gets harder. \n\n")
     correct_answer = None
     pick_mode = None 
     modes = ("easy", "normal", "hard")
@@ -79,7 +174,7 @@ def simple_quiz_game():
 
     while pick_mode not in modes:
 
-        pick_mode = input("What game mode do you want easy, normal or hard? :")
+        pick_mode = input("What game mode do you want easy, normal or hard? : \n")
 
         
         if pick_mode == "easy":
@@ -258,9 +353,7 @@ def simple_quiz_game():
         time.sleep(2)
         main()
     else:
-        print(f"Sorry, that's not correct. The answer was {correct_answer}, returning to main page.")
-        print("")
-        print("")
+        print(f"Sorry, that's not correct. The answer was {correct_answer}, returning to main page. \n\n")
         time.sleep(2)
         main()
 
@@ -291,8 +384,7 @@ def scramble_word_game():
     pick_mode = None
 
     print("Welcome to Word Scramble!")
-    print("Unscramble the word to find the original word.")
-    print("")
+    print("Unscramble the word to find the original word. \n")
   
     
     while pick_mode not in modes:
@@ -306,9 +398,7 @@ def scramble_word_game():
         elif pick_mode == "hard":
             words = ["complicated", "hypothesis", "extravagant", "unbelievable", "abstraction", "unfortunate", "discrepancy", "archetypal", "perspective", "articulation", "inspiration", "predicament", "significant", "vocabulary", "continuation", "fundamental", "calculation", "perception", "transparency", "clarification"]
         else:
-            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard")
-            print("")
-            print("")
+            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard \n\n")
          
     print("")
 
@@ -317,22 +407,17 @@ def scramble_word_game():
     word = random.choice(words)
     scramble = scramble_word(word)
 
-    print(f"Scrambled word: {scramble}")
-    print("")
+    print(f"Scrambled word: {scramble} \n\n")
 
 
     guess = input("What is your guess?:").strip().lower()
     
     if guess == word:
-        print("You won this game returning to main page.")
-        print("")
-        print("")
+        print("You won this game returning to main page. \n\n")
         time.sleep(2)
         main()
     else:
-        print(f"Sorry, that's not correct. The word was {word}, returning to main page.")
-        print("")
-        print("")
+        print(f"Sorry, that's not correct. The word was {word}, returning to main page. \n\n")
         time.sleep(2)
         main()
         
@@ -351,10 +436,11 @@ def number_guessing_game():
     modes = ("easy", "normal", "hard")
     pick_mode = None
     numbers_tried = 0
-    
 
+    print("Welcome to the guessing game, Guess the number the harder the game mode the more numbers you guess through.")
     while pick_mode not in modes:
-        
+        print("")
+        print("")
         pick_mode = input("what game mode would you like easy, normal or hard:")
     
         if pick_mode == "easy":
@@ -371,9 +457,7 @@ def number_guessing_game():
             number_of_trys = 35
                 
         else:
-            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard")
-            print("")
-            print("")
+            print("Invalid mode selected. Please choose 'easy', 'normal', or 'hard \n\n")
             
     print(f"I have selected a number based on the {pick_mode} mode. Can you guess what it is? the max number will be {bigest_number}, And you will have {number_of_trys} trys")
     guess = None
@@ -383,10 +467,7 @@ def number_guessing_game():
     
     while guess != numbers_to_guess:
         if numbers_tried >= number_of_trys:
-            print("You reached the max number of trys, returning to main page.")
-            print("")
-            print("")
-            print("")
+            print("You reached the max number of trys, returning to main page. \n\n\n")
             time.sleep(2)
             main()
         
@@ -405,9 +486,7 @@ def number_guessing_game():
             print("That number is to small")
         
         else:
-            print("You won this game returning to main page.")
-            print("")
-            print("")
+            print("You won this game returning to main page. \n\n")
             time.sleep(2)
             main()
             
@@ -423,33 +502,33 @@ def number_guessing_game():
 
 
 def main():
-    games = ["number guessing game", "scramble game", "quiz game", "gamble game"]
-    games_to_play = "number guessing game, scramble game, quiz game and gamble game "
+    games = ["number guessing game", "scramble game", "quiz game", "gamble game", "hangman game"]
+    games_to_play = "number guessing game, scramble game, quiz game,  gamble game and hangman game"
     pick = None
     
     while pick not in games:
         print(f"These are the games we have: {games_to_play}")
         pick = input("What game do you want to play? type the game:")
         if pick == "number guessing game":
+            print("\n")
             time.sleep(.5)
-            print("")
-            print("")
             number_guessing_game()
         elif pick == "scramble game":
             time.sleep(.5)
-            print("")
-            print("")
+            print("\n")
             scramble_word_game()
         elif pick == "quiz game":
             time.sleep(.5)
-            print("")
-            print("")
+            print("\n")
             simple_quiz_game()
         elif pick == "gamble game":
             time.sleep(.5)
-            print("")
-            print("")
+            print("\n")
             gamble_game()
+        elif pick == "hangman game":
+            time.sleep(.5)
+            print("\n")
+            hangman_game()
         else:
             print("Invalid game selected. Please select a valid game.")
             print("")
