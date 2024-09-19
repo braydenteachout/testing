@@ -1,6 +1,9 @@
 import random
 import time
 
+
+
+
 def hangman_game():
     print("Welcome to the hangman game, Guess the letter before you run out of chances")
     modes = ("easy", "normal", "hard")
@@ -82,16 +85,7 @@ def hangman_game():
         print(f"You lost! The word was '{rand}'.")
         print("Returning to main page. \n\n")
         time.sleep(2)
-        main()
-        
-
-
-
-    
-
-
-
-
+        main()   
 
 
 
@@ -110,50 +104,47 @@ def gamble_game():
         
         user_start = input(f"your balance is {balance}, ready to start? \"say start\" :")
         if user_start == "start":
-            user_bid = int(input("How much are you bidding? :"))
-            
-            if user_bid <= balance:
-                playing = True
-                fail_chance = 25
-                new_bid_balance = user_bid
-                balance = balance - user_bid
-                while playing:
+            try:
+                user_bid = int(input("How much are you bidding? :"))
+                
+                if user_bid <= balance:
+                    playing = True
+                    fail_chance = 25
+                    new_bid_balance = user_bid
+                    balance = balance - user_bid
+                    while playing:
 
-                    print(f"You have a {fail_chance}% chance to lose all your money but if you win you win 100% more money.")
-                    ask_bid_more = input("Would you like to continue? yes/no:")
-                    
-                    if ask_bid_more == "yes":
-                        if random.randint(1, 100) <= fail_chance:
-                            print("you failed you lost your bid.")
-                            playing = False
-                        else:
-                            new_bid_balance = round(new_bid_balance * 2)
-                            print("\n")
-                            print(f"you won your balance is now ${new_bid_balance}")
-                            
-
-                    elif ask_bid_more == "no":
-                        print("")
-                        print(f"Ok, you cashed out at ${new_bid_balance}")
-                        balance = balance + new_bid_balance
-                        playing = False
+                        print(f"You have a {fail_chance}% chance to lose all your money but if you win you win 100% more money.")
+                        ask_bid_more = input("Would you like to continue? yes/no:")
                         
-                    else:
-                        print("Plesae answer yes or no")
+                        if ask_bid_more == "yes":
+                            if random.randint(1, 100) <= fail_chance:
+                                print("you failed you lost your bid.")
+                                playing = False
+                            else:
+                                new_bid_balance = round(new_bid_balance * 2)
+                                print("\n")
+                                print(f"you won your balance is now ${new_bid_balance}")
+                                
 
-            elif user_bid > balance:
-                print("You don't have that much money")
+                        elif ask_bid_more == "no":
+                            print("")
+                            print(f"Ok, you cashed out at ${new_bid_balance}")
+                            balance = balance + new_bid_balance
+                            playing = False 
+                        else:
+                            print("Please answer yes or no\n")
+                else:
+                    print("You dont have the money")
+            except ValueError:
+                print("Invalid. Please enter a number")
         elif user_start == "main":
             print("Returning to main page. \n\n")
             time.sleep(2)
             main()
             
         else:
-            print("Invalid. Please select 'start'")        
-
-    
-    
-
+            print(" select 'start'")        
 
 
 
@@ -230,10 +221,8 @@ def simple_quiz_game():
                 print("(D) Error")
                 correct_answer = 'a'
 
-                
 
 
-    
         if pick_mode == "normal":
             questions = [
                 "What will be the output of the following code? print('Hello' * 3 + 'World')",
@@ -285,9 +274,6 @@ def simple_quiz_game():
                 print("(C) **kwargs is used for variable length arguments and *args for keyword arguments")
                 print("(D) *args is used for variable length arguments and **kwargs for keyword arguments")
                 correct_answer = 'd'
-
-                
-
 
 
 
@@ -360,10 +346,6 @@ def simple_quiz_game():
 
 
 
-                    
-
-
-
 
 
 
@@ -420,8 +402,6 @@ def scramble_word_game():
         print(f"Sorry, that's not correct. The word was {word}, returning to main page. \n\n")
         time.sleep(2)
         main()
-        
-
 
 
 
@@ -462,9 +442,8 @@ def number_guessing_game():
     print(f"I have selected a number based on the {pick_mode} mode. Can you guess what it is? the max number will be {bigest_number}, And you will have {number_of_trys} trys")
     guess = None
 
-    
-        
-    
+
+
     while guess != numbers_to_guess:
         if numbers_tried >= number_of_trys:
             print("You reached the max number of trys, returning to main page. \n\n\n")
@@ -489,8 +468,6 @@ def number_guessing_game():
             print("You won this game returning to main page. \n\n")
             time.sleep(2)
             main()
-            
-
 
 
 
